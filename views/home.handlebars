@@ -1,0 +1,18 @@
+<h1>Restaurants</h1>
+<section class="gallery">
+    {{#each restaurants}}
+        <a href="./{{this.name}}">
+            <div class="galleryItem">
+                <h3>{{this.name}}</h3>
+                <div class="image" style="background-image: url({{this.image}});">
+                </div>
+                <h4>Menus:</h4>
+                <ul>
+                    {{#each this.menus}}
+                        <li>{{this.title}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+        </a>
+    {{/each}}
+</section>

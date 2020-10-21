@@ -1,0 +1,21 @@
+<h1>{{restaurant.name}}</h1>
+<div class="restaurantImage" style="background-image: url({{restaurant.image}});"></div>
+<section class="gallery">
+    {{#each menus}}
+        <div class ="galleryItem">
+            <h3>{{this.title}}</h3>
+            {{#each this.items}}
+                <div class="item">
+                    <dl>{{this.name}}</dl>
+                    <dt>£{{this.price}}</dt>
+                </div>
+            {{/each}}
+            <form class="addItem" action="/{{restaurant.name}}/{{this.id}}/add">
+                <input type="text" id="itemDesc" name="itemDesc" value="Enter the item here">
+                <input type="text" id="itemPrice" name="itemPrice" value="Item price">
+                <input type="submit" value="Add Item">
+            </form>
+        </div>
+    {{/each}}
+</section>
+
