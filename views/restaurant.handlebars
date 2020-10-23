@@ -1,5 +1,7 @@
 <h1>{{restaurant.name}}</h1>
 <div class="restaurantImage" style="background-image: url({{restaurant.image}});"></div>
+    <a href="/{{restaurant.id}}/update">Edit Restaurant</a>
+    <a href="/{{restaurant.id}}/delete">Delete Restaurant</a>
 <section class="gallery">
     {{#each menus}}
         <div class ="galleryItem">
@@ -8,14 +10,20 @@
                 <div class="item">
                     <dl>{{this.name}}</dl>
                     <dt>£{{this.price}}</dt>
+                    <dt><a href="/{{../../restaurant.id}}/{{this.MenuId}}/{{this.id}}/delete">&#10060</a></dt>
                 </div>
             {{/each}}
-            <form class="addItem" action="/{{restaurant.name}}/{{this.id}}/add">
-                <input type="text" id="itemDesc" name="itemDesc" value="Enter the item here">
-                <input type="text" id="itemPrice" name="itemPrice" value="Item price">
-                <input type="submit" value="Add Item">
-            </form>
+            <a href="/{{this.RestaurantId}}/{{this.id}}">Add item</a>
+            <a href="/{{this.RestaurantId}}/{{this.id}}/update">Edit Menu</a>
+            <a href="/{{this.RestaurantId}}/{{this.id}}/delete">Delete Menu</a>
         </div>
     {{/each}}
+    <div class="galleryItem">
+        <h3>Add a menu:</h3>
+        <form class="addMenu" action="/{{restaurant.id}}" method="POST">
+            <input type="text" id="title" name="title" placeholder="Menu Title" required> <br>
+            <input type="submit" value="Add Menu">
+        </form>
+    </div>
 </section>
 
