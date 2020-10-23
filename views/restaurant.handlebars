@@ -1,7 +1,14 @@
 <h1>{{restaurant.name}}</h1>
 <div class="restaurantImage" style="background-image: url({{restaurant.image}});"></div>
-    <a href="/{{restaurant.id}}/update">Edit Restaurant</a>
+<div class="editRestaurantButtons">
+    <a href="javascript:;" onClick="showRestaurantForm()">Edit Restaurant</a>
+        <form class="restaurantForm hidden"action="/{{restaurant.id}}/update" method="POST">
+            <input type="text" id="name" name="name" value="{{restaurant.name}}" required> <br>
+            <input type="url" id="image" name="image" value="{{restaurant.image}}" required> <br>
+            <input type="submit" value="Update Restaurant">
+        </form>
     <a href="/{{restaurant.id}}/delete">Delete Restaurant</a>
+</div>
 <section class="gallery">
     {{#each menus}}
         <div class ="galleryItem">
@@ -9,13 +16,23 @@
             {{#each this.items}}
                 <div class="item">
                     <dl>{{this.name}}</dl>
-                    <dt>£{{this.price}}</dt>
-                    <dt><a href="/{{../../restaurant.id}}/{{this.MenuId}}/{{this.id}}/delete">&#10060</a></dt>
+                    <dt>£{{this.price}}  <a href="/{{../../restaurant.id}}/{{this.MenuId}}/{{this.id}}/delete">&#10060</a></dt>
                 </div>
             {{/each}}
-            <a href="/{{this.RestaurantId}}/{{this.id}}">Add item</a>
-            <a href="/{{this.RestaurantId}}/{{this.id}}/update">Edit Menu</a>
-            <a href="/{{this.RestaurantId}}/{{this.id}}/delete">Delete Menu</a>
+            <div class="editMenuButtons">
+                <a href="javascript:;" onClick="showItemForm()">Add Item</a>
+                <form class="itemForm hidden" action="/{{this.RestaurantId}}/{{this.id}}" method="POST">
+                    <input type="text" name="name" placeholder="Enter the item here">
+                    <input type="text" name="price" placeholder="Item price">
+                    <input type="submit" value="Add Item">
+                </form>
+                <a href="javascript:;" onClick="showMenuForm()">Edit Menu</a>
+                <form class="menuForm hidden" action="/{{this.RestaurantId}}/{{this.id}}/update" method="POST">
+                    <input type="text" name="title" value="{{this.title}}" required> <br>
+                    <input type="submit" value="Update Menu">
+                </form>
+                <a href="/{{this.RestaurantId}}/{{this.id}}/delete">Delete Menu</a>
+            </div>
         </div>
     {{/each}}
     <div class="galleryItem">
@@ -27,3 +44,17 @@
     </div>
 </section>
 
+<script>
+    function showRestaurantForm(){
+        let element = document.querySelector(".restaurantForm")
+        element.classList.toggle("hidden")
+    }
+    function showMenuForm(){
+        let element = document.querySelector(".menuForm")
+        element.classList.toggle("hidden")
+    }
+        function showItemForm(){
+        let element = document.querySelector(".itemForm")
+        element.classList.toggle("hidden")
+    }
+</script>

@@ -44,7 +44,7 @@ a {
     border-radius: 5px;
     padding: 0 5%;
     margin: 1rem 0;
-    height: 25.5rem;
+    height: 35rem;
     position: relative;
 }
 
@@ -85,21 +85,37 @@ ul{
     background-position: 50% 75%;
 }
 
+.editRestaurantButtons {   
+    margin-top: 2px;
+    font-size: 90%;
+    bottom: 5%;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    margin: auto;
+    font-weight: 700;
+
+}
+
 .item {
     display: flex;
     justify-content: space-between;
 }
 
-.addItem {
+.editMenuButtons {
     position: absolute;
-    margin-top: 2px;
-    font-size: 90%;
     bottom: 5%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    width: 80%;
+    width: 90%;
+    margin: 2% auto;
+    font-weight: 700;
 
+}
+
+.hidden {
+    display: none;
 }
 
 .addRestaurant {

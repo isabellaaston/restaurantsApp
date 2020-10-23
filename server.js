@@ -51,10 +51,6 @@ app.get('/:restaurantId/delete', async(req, res) => {
 })
 
 // Edit a restaurant by id
-app.get('/:restaurantId/update', async(req, res) => {
-    const restaurant = await Restaurant.findByPk(req.params.restaurantId)
-    res.render('restaurantEdit', {restaurant})
-})
 app.post('/:restaurantId/update', async(req, res) => {
     const restaurant = await Restaurant.findByPk(req.params.restaurantId)
     restaurant.update(req.body)
@@ -78,11 +74,6 @@ app.post('/:restaurantId', async(req, res) => {
 })
 
 // Edit a menu by id from a restaurant
-app.get('/:restaurantId/:menuId/update', async(req, res) => {
-    const restaurant = await Restaurant.findByPk(req.params.restaurantId)
-    const menu = await Menu.findByPk(req.params.menuId)
-    res.render('menuEdit', {restaurant, menu})
-})
 app.post('/:restaurantId/:menuId/update', async(req, res) => {
     const menu = await Menu.findByPk(req.params.menuId)
     menu.update(req.body)
@@ -107,10 +98,6 @@ app.get('/:restaurantId/:menuId/delete', async(req, res) => {
 })
 
 // Add an item to a specific menu
-app.get('/:restaurantId/:menuId', async(req, res) => {
-    const menu = await Menu.findByPk(req.params.menuId)
-    res.render('menuAdd', {menu})
-})
 app.post('/:restaurantId/:menuId/', async(req, res) => {
     const menu = await Menu.findByPk(req.params.menuId)
     const item = await Item.create(req.body)
